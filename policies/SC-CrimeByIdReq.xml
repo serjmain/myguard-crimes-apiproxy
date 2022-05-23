@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-CrimeByIdReq">
+    <DisplayName>SC-CrimeByIdReq</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="myRequest">
+        <Set>
+            <QuearyParams>
+                <QueryParam name="apikey">{apikey}</QueryParam>
+            </QuearyParams>
+            <Verb>GET</Verb>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>calloutResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://tranquil-taiga-07587.herokuapp.com/crimes/{id}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="SC-CrimeByParamsReq">
+    <DisplayName>SC-CrimeByParamsReq</DisplayName>
+    <Properties/>
+    <Request variable="getCrimesRequest">
+        <Set>
+            <QuearyParams>
+                <QueryParam name="apikey">{apikey}</QueryParam>
+                <QueryParam name="userId">{userId}</QueryParam>
+                <QueryParam name="policeStationId">{policeStationId}</QueryParam>
+                <QueryParam name="searchByName">{searchByName}</QueryParam>
+                <QueryParam name="searchByRate">{searchByRate}</QueryParam>
+                <QueryParam name="searchByDate">{searchByDate}</QueryParam>
+                <QueryParam name="sortByRate">{sortByRate}</QueryParam>
+                <QueryParam name="limit">{limit}</QueryParam>
+            </QuearyParams>
+            <Verb>GET</Verb>
+        </Set>
+    </Request>
+    <Response>calloutResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://tranquil-taiga-07587.herokuapp.com/crimes?{request.querystring}</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

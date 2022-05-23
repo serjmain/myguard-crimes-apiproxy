@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-ExtractExpandedCrime">
+    <DisplayName>EV-ExtractExpandedCrime</DisplayName>
+    <Source>request</Source>
+    <QueryParam name="userId">
+        <Pattern ignoreCase="true">{userId}</Pattern>
+    </QueryParam>
+    <QueryParam name="policeStationId">
+        <Pattern ignoreCase="true">{policeStationId}</Pattern>
+    </QueryParam>
+    <QueryParam name="searchByName">
+        <Pattern ignoreCase="true">{searchByName}</Pattern>
+    </QueryParam>
+    <QueryParam name="searchByRate">
+        <Pattern ignoreCase="true">{searchByRate}</Pattern>
+    </QueryParam>
+    <QueryParam name="searchByDate">
+        <Pattern ignoreCase="true">{searchByDate}</Pattern>
+    </QueryParam>
+    <QueryParam name="sortByRate">
+        <Pattern ignoreCase="true">{sortByRate}</Pattern>
+    </QueryParam>
+    <QueryParam name="limit">
+        <Pattern ignoreCase="true">{limit}</Pattern>
+    </QueryParam>
+</ExtractVariables>

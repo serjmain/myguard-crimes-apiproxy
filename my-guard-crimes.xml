@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="15" name="my-guard-crimes">
+    <Basepaths>/v1/my-guard-crimes</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1652731752163</CreatedAt>
+    <CreatedBy>sek.sazonov@gmail.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>my-guard-crimes</DisplayName>
+    <LastModifiedAt>1652731752163</LastModifiedAt>
+    <LastModifiedBy>sek.sazonov@gmail.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:7c13924fb5c944bb1cb59dfc431bac8c0b515ccdf389c2376e265add8506543ae9465911ba000f92fa87664f4505ead1f6a2e8e7e89b6eaf9e77458764c97f9d:dc-1</ManifestVersion>
+    <Policies>
+        <Policy>AM-BadRequestError</Policy>
+        <Policy>AM-DefaultError</Policy>
+        <Policy>AM-NotFoundCrimeError</Policy>
+        <Policy>AM-RemoveQueryParam apikey</Policy>
+        <Policy>EV-ExtractApikey</Policy>
+        <Policy>EV-ExtractCrime</Policy>
+        <Policy>EV-ExtractExpandedCrime</Policy>
+        <Policy>JS-PrintResponse</Policy>
+        <Policy>RF-TooManyRequests</Policy>
+        <Policy>RF-Unauthorized</Policy>
+        <Policy>SA-Block</Policy>
+        <Policy>SC-CrimeByIdReq</Policy>
+        <Policy>SC-CrimeByParamsReq</Policy>
+        <Policy>VAK-VerifyKey</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>openapi://association.json</Resource>
+        <Resource>jsc://JavaScript-1.js</Resource>
+    </Resources>
+    <Spec>https://raw.githubusercontent.com/serjmain/crimes/dev/swagger.yaml</Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

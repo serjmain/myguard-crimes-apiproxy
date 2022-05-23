@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="handling protection">
+            <Step>
+                <Name>RF-TooManyRequests</Name>
+                <Condition>(fault.name = "SpikeArrestViolation")</Condition>
+            </Step>
+            <Step>
+                <Name>RF-Unauthorized</Name>
+                <Condition>(fault.name = "FailedToResolveAPIKey")</Condition>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>SA-Block</Name>
+            </Step>
+            <Step>
+                <Name>VAK-VerifyKey</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>JS-PrintResponse</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="getCrimes">
+            <Description>get full criminal situation info</Description>
+            <Request>
+                <Step>
+                    <Name>EV-ExtractApikey</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ExtractExpandedCrime</Name>
+                </Step>
+                <Step>
+                    <Name>SC-CrimeByParamsReq</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/crimes") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="createCrime">
+            <Description>Adds crime</Description>
+            <Request>
+                <Step>
+                    <Name>EV-ExtractApikey</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/crimes") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="getCrimesById">
+            <Description>Get crime by id</Description>
+            <Request>
+                <Step>
+                    <Name>EV-ExtractApikey</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ExtractCrime</Name>
+                </Step>
+                <Step>
+                    <Name>SC-CrimeByIdReq</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/crimes/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="updateCrimesByid">
+            <Description>Change crime by id</Description>
+            <Request>
+                <Step>
+                    <Name>EV-ExtractApikey</Name>
+                </Step>
+                <Step>
+                    <Name>EV-ExtractCrime</Name>
+                </Step>
+                <Step>
+                    <Name>SC-CrimeByIdReq</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/crimes/*") and (request.verb = "PATCH")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/v1/my-guard-crimes</BasePath>
+        <Properties/>
+        <VirtualHost>default</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>
