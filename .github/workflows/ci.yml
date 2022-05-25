@@ -1,0 +1,19 @@
+# This is a basic workflow to help you get started with Actions
+
+name: proxy-ci
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: deploy on OPDK
+        run: mvn install -Ptest -Dusername="sek.sazonov@gmail.com" -Dpassword="ey[)L7YR"
